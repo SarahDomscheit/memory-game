@@ -22,18 +22,15 @@ const Welcome = ({ setIsStarted, setCardsComplete }) => {
       isMatched: false,
     }));
 
-    // Duplikate für Memory
     const duplicatedCards = [
       ...cards,
-      ...cards.map((card, index) => ({
+      ...cards.map((card) => ({
         ...card,
         id: card.id + "-dup",
       })),
     ];
 
-    // Optional: Mischen
     const shuffledDeck = duplicatedCards.sort(() => Math.random() - 0.5);
-
     return shuffledDeck;
   }
 
