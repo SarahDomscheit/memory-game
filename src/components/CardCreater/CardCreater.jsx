@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "./CardCreater.css";
 
@@ -6,7 +7,7 @@ const CardCreater = ({ card, back, setCardsComplete, cardsComplete }) => {
 
   const flipCard = () => {
     setIsFlipped(!isFlipped);
-    [card.isFlipped] = true;
+    // [card.isFlipped] = true;
     console.log(card);
   };
 

@@ -1,5 +1,5 @@
-const GameFinish = () => {
-  return <div></div>;
+const GameFinish = ({result}) => {
+  return <div>{result}</div>;
 };
 
 export default GameFinish;

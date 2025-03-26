@@ -1,11 +1,15 @@
+
+
 .blue {
-  background-color: blue;
+  background: rgb(175,170,255);
+background: linear-gradient(90deg, rgba(175,170,255,1) 0%, rgba(144,144,255,1) 48%, rgba(59,200,228,1) 100%);
 }
 
 .card {
   width: 150px;
   height: 200px;
   perspective: 1000px;
+  margin: 8px;
 }
 
 .card-inner {
