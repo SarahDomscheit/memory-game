@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import CardCreater from "./CardCreater/CardCreater";
+import "./GameStart.css";
 
 const GameStart = ({
   cardsComplete,
@@ -7,7 +9,9 @@ const GameStart = ({
   setCardsComplete,
 }) => {
   return (
-    <div className="flex justify-center items-center">
+    <>
+    <h1 className="title">Memory-Game</h1>
+    <div className="flex flex-wrap h-90 justify-center items-center">
       {cardsComplete.map((card) => (
         <CardCreater
           key={card.id}
@@ -18,6 +22,7 @@ const GameStart = ({
         />
       ))}
     </div>
+    </>
   );
 };
 

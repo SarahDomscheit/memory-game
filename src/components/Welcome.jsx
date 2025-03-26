@@ -1,17 +1,18 @@
 import { useState } from "react";
 
 const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
+  // eslint-disable-next-line no-unused-vars
   const [url, setUrl] = useState([
-    "https://picsum.photos/200/300?random=1",
-    "https://picsum.photos/200/300?random=2",
-    "https://picsum.photos/200/300?random=3",
-    "https://picsum.photos/200/300?random=4",
-    "https://picsum.photos/200/300?random=5",
-    "https://picsum.photos/200/300?random=6",
-    "https://picsum.photos/200/300?random=7",
-    "https://picsum.photos/200/300?random=8",
-    "https://picsum.photos/200/300?random=9",
-    "https://picsum.photos/200/300?random=10",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/039.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/063.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/092.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/133.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png",
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png"
   ]);
 
   function createDeck(url) {
