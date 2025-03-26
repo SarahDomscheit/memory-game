@@ -1,4 +1,4 @@
-const GameStart = () => {
+const GameStart = ({ cardsComplete }) => {
   return <div></div>;
 };
 
