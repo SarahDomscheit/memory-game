@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 const App = () => {
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [result, setResult] = useState ("")
   const [cardsComplete, setCardsComplete] = useState([]);
   console.log(cardsComplete);
   const [cardBack, setCardBack] = useState(); //option later
@@ -22,6 +23,7 @@ const App = () => {
           cardBack={cardBack}
           setIsFinished={setIsFinished}
           setCardsComplete={setCardsComplete}
+          setResult={setResult}
         />
       ) : (
         <Welcome
@@ -30,7 +32,7 @@ const App = () => {
           setCardBack={setCardBack}
         />
       )}
-      {isFinished && <GameFinish />}
+      {isFinished && <GameFinish result={result}/>}
       <Footer />
     </>
   );
