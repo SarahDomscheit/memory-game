@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Welcome = ({ setIsStarted, setCardsComplete }) => {
+const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const [url, setUrl] = useState([
     "https://picsum.photos/200/300?random=1",
     "https://picsum.photos/200/300?random=2",
@@ -38,6 +38,8 @@ const Welcome = ({ setIsStarted, setCardsComplete }) => {
     // fetch later
     const deck = createDeck(url);
     setCardsComplete(deck);
+    //option to set card back
+    setCardBack("blue");
     setIsStarted(true);
   };
 
