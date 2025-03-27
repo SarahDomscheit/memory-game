@@ -1,0 +1,29 @@
+.finishedBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left:0;
+    background-color: rgba(0, 0, 0, 0.474);
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(2px);
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+} 
+
+.button {
+background-color: white;
+color: black;
+padding: 10px, 20px;
+border: none;
+border-radius: 5px;
+font-size: 1.4rem;
+cursor: pointer;
+padding: 5px;
+
+}

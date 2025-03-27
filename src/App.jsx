@@ -32,7 +32,7 @@ const App = () => {
           setCardBack={setCardBack}
         />
       )}
-      {isFinished && <GameFinish result={result} />}
+      {isFinished && <GameFinish result={result} setIsStarted={setIsStarted} setIsFinished={setIsFinished}/>}
       <Footer />
     </>
   );
