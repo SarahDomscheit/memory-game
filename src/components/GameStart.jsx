@@ -17,31 +17,35 @@ const GameStart = ({
     if (cards[0].image === cards[1].image) {
       const updatedCards = cardsComplete.map((currentCard) => {
         if (currentCard.id === cards[0].id) {
-          console.log("if match [0]");
+          // console.log("if match [0]");
           currentCard.isMatched = !currentCard.isMatched;
         }
         if (currentCard.id === cards[1].id) {
-          console.log("if match [1]");
+          // console.log("if match [1]");
           currentCard.isMatched = !currentCard.isMatched;
+        }
+
+        return currentCard;
+      });
+      setCardsComplete(updatedCards);
+      
+      setCardsFlipped([]);
+      // Karten dürfen nicht mehr gedreht werden
+    } else  {
+      const updatedCards = cardsComplete.map((currentCard) => {
+        if (currentCard.id === cards[0].id) {
+          currentCard.isFlipped = !currentCard.isFlipped;
+        }
+        if (currentCard.id === cards[1].id) {
+          currentCard.isFlipped = !currentCard.isFlipped;
         }
         return currentCard;
       });
       setCardsComplete(updatedCards);
-      console.log("cardscomplete", cardsComplete);
       setCardsFlipped([]);
-      // Karten dürfen nicht mehr gedreht werden
     }
-    const updatedCards = cardsComplete.map((currentCard) => {
-      if (currentCard.id === cards[0].id) {
-        return { ...currentCard, isFlipped: !currentCard.isFlipped };
-      }
-      if (currentCard.id === cards[1].id) {
-        return { ...currentCard, isFlipped: !currentCard.isFlipped };
-      }
-      return currentCard;
-    });
-    setCardsComplete(updatedCards);
-    setCardsFlipped([]);
+console.log("cardscomplete", cardsComplete);
+    
   }
   useEffect(() => {
     if (cardsFlipped.length === 2) {
