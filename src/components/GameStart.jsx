@@ -12,7 +12,6 @@ const GameStart = ({
   setResult,
 }) => {
   const [cardsFlipped, setCardsFlipped] = useState([]);
-  const [cardsToFlip, setCardsToFlip] = useState([]);
   function checkFlippedCards(cards) {
     console.log("checkFlippedCards", cards);
     if (cards[0].image === cards[1].image) {
@@ -78,8 +77,7 @@ console.log("cardscomplete", cardsComplete);
             cardsComplete={cardsComplete}
             cardsFlipped={cardsFlipped}
             setCardsFlipped={setCardsFlipped}
-            cardsToFlip={cardsToFlip}
-            setCardsToFlip={setCardsToFlip}
+            
           />
         ))}
       </div>

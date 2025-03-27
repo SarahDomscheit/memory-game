@@ -9,8 +9,7 @@ const CardCreater = ({
   cardsComplete,
   setCardsFlipped,
   cardsFlipped,
-  cardsToFlip, 
-  setCardsToFlip,
+  
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -42,7 +41,7 @@ const CardCreater = ({
           style={{ backgroundImage: `url(${card.image})` }}
         ></div>
       </div>{" "}
-      <p>{card.id}</p>
+      {/* <p>{card.id}</p> */}
     </div>
   );
 };
