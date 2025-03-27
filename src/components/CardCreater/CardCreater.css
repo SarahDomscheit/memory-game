@@ -10,6 +10,8 @@ background: linear-gradient(90deg, rgba(175,170,255,1) 0%, rgba(144,144,255,1) 4
   height: 200px;
   perspective: 1000px;
   margin: 8px;
+  border: 2px solid black;
+  border-radius: 8px;
 }
 
 .card-inner {

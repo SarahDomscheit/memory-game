@@ -12,6 +12,7 @@ const GameStart = ({
   setResult,
 }) => {
   const [cardsFlipped, setCardsFlipped] = useState([]);
+  const [cardsToFlip, setCardsToFlip] = useState([]);
   function checkFlippedCards(cards) {
     console.log("checkFlippedCards", cards);
     if (cards[0].image === cards[1].image) {
@@ -31,18 +32,20 @@ const GameStart = ({
       
       setCardsFlipped([]);
       // Karten dürfen nicht mehr gedreht werden
-    } else  {
-      const updatedCards = cardsComplete.map((currentCard) => {
-        if (currentCard.id === cards[0].id) {
-          currentCard.isFlipped = !currentCard.isFlipped;
-        }
-        if (currentCard.id === cards[1].id) {
-          currentCard.isFlipped = !currentCard.isFlipped;
-        }
-        return currentCard;
-      });
-      setCardsComplete(updatedCards);
-      setCardsFlipped([]);
+    } else {
+      setTimeout(() => {
+        const updatedCards = cardsComplete.map((currentCard) => {
+          if (currentCard.id === cards[0].id) {
+            currentCard.isFlipped = !currentCard.isFlipped;
+          }
+          if (currentCard.id === cards[1].id) {
+            currentCard.isFlipped = !currentCard.isFlipped;
+          }
+          return currentCard;
+        });
+        setCardsComplete(updatedCards);
+        setCardsFlipped([]);
+      }, 1000); // 1 Sekunde Verzögerung
     }
 console.log("cardscomplete", cardsComplete);
     
@@ -52,13 +55,13 @@ console.log("cardscomplete", cardsComplete);
       checkFlippedCards(cardsFlipped);
     }
   }, [cardsFlipped]);
-  // useEffect(() => {
-  //   if (cardsComplete.every((card) => card.matched)) {
-  //     setIsRunning(false);
-  //     setIsFinished(true);
-  //     setResult("Gewonnen! 🎉");
-  //   }
-  // }, [cardsComplete]);
+  
+  useEffect(() => {
+    if (cardsComplete.every((card) => card.isMatched)) {
+      setIsFinished(true);
+      setResult("Gewonnen! 🎉");
+    }
+  }, [cardsComplete]);
 
   return (
     <>
@@ -75,6 +78,8 @@ console.log("cardscomplete", cardsComplete);
             cardsComplete={cardsComplete}
             cardsFlipped={cardsFlipped}
             setCardsFlipped={setCardsFlipped}
+            cardsToFlip={cardsToFlip}
+            setCardsToFlip={setCardsToFlip}
           />
         ))}
       </div>
