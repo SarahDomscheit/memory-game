@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./CardCreater.css";
 
 const CardCreater = ({
@@ -9,15 +9,20 @@ const CardCreater = ({
   cardsComplete,
   setCardsFlipped,
   cardsFlipped,
+  
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
+  useEffect(() => {
+    // Synchronisiere den lokalen Zustand mit dem globalen Zustand
+    setIsFlipped(card.isFlipped);
+  }, [card.isFlipped]);
+
   const flipCard = () => {
-    if (!card.isMatched && !card.isFlipped) {
-      setIsFlipped(!isFlipped);
+    if (!card.isMatched && !card.isFlipped && cardsFlipped.length < 2) {
       const updatedCards = cardsComplete.map((currentCard) => {
         if (currentCard.id === card.id) {
-          return { ...currentCard, isFlipped: !currentCard.isFlipped };
+          return { ...currentCard, isFlipped: true };
         }
         return currentCard;
       });
@@ -36,7 +41,7 @@ const CardCreater = ({
           style={{ backgroundImage: `url(${card.image})` }}
         ></div>
       </div>{" "}
-      <p>{card.id}</p>
+      {/* <p>{card.id}</p> */}
     </div>
   );
 };
