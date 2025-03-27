@@ -12,12 +12,12 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
     "https://assets.pokemon.com/assets/cms2/img/pokedex/full/092.png",
     "https://assets.pokemon.com/assets/cms2/img/pokedex/full/133.png",
     "https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png"
+    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png",
   ]);
 
   function createDeck(url) {
     const cards = url.map((url, index) => ({
-      id: index,
+      id: `${index}`,
       image: url,
       isFlipped: false,
       isMatched: false,

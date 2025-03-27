@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import CardCreater from "./CardCreater/CardCreater";
 import "./GameStart.css";
-
+import Timer from "./Timer";
 
 const GameStart = ({
   cardsComplete,
@@ -11,58 +11,69 @@ const GameStart = ({
   setCardsComplete,
   setResult,
 }) => {
-  const [time, setTime] = useState(30);
-  const [isRunning, setIsRunning] = useState(true);
-
-  useEffect(()=>{
-    let interval = null;
-
-    if (isRunning) {
-      interval = setInterval(() =>{
-        setTime((prevTime) => prevTime -1);
-      }, 1000);
-    } else {
-      clearInterval(interval)
+  const [cardsFlipped, setCardsFlipped] = useState([]);
+  function checkFlippedCards(cards) {
+    console.log("checkFlippedCards", cards);
+    if (cards[0].image === cards[1].image) {
+      const updatedCards = cardsComplete.map((currentCard) => {
+        if (currentCard.id === cards[0].id) {
+          console.log("if match [0]");
+          currentCard.isMatched = !currentCard.isMatched;
+        }
+        if (currentCard.id === cards[1].id) {
+          console.log("if match [1]");
+          currentCard.isMatched = !currentCard.isMatched;
+        }
+        return currentCard;
+      });
+      setCardsComplete(updatedCards);
+      console.log("cardscomplete", cardsComplete);
+      setCardsFlipped([]);
+      // Karten dürfen nicht mehr gedreht werden
     }
-
-    return () => clearInterval(interval);
-  }, [isRunning]);
-
+    const updatedCards = cardsComplete.map((currentCard) => {
+      if (currentCard.id === cards[0].id) {
+        return { ...currentCard, isFlipped: !currentCard.isFlipped };
+      }
+      if (currentCard.id === cards[1].id) {
+        return { ...currentCard, isFlipped: !currentCard.isFlipped };
+      }
+      return currentCard;
+    });
+    setCardsComplete(updatedCards);
+    setCardsFlipped([]);
+  }
   useEffect(() => {
-    if (cardsComplete.every((card) => card.matched)) {
-      setIsRunning(false);
-      setIsFinished(true);
-      setResult("Gewonnen! 🎉");
+    if (cardsFlipped.length === 2) {
+      checkFlippedCards(cardsFlipped);
     }
-  }, [cardsComplete]);
-  
-  // Wenn Timer abläuft
-  useEffect(() => {
-    if (time <= 0) {
-      setIsRunning(false);
-      setIsFinished(true);
-      setResult("Verloren! Zeit ist abgelaufen.");
-    }
-  }, [time]);
+  }, [cardsFlipped]);
+  // useEffect(() => {
+  //   if (cardsComplete.every((card) => card.matched)) {
+  //     setIsRunning(false);
+  //     setIsFinished(true);
+  //     setResult("Gewonnen! 🎉");
+  //   }
+  // }, [cardsComplete]);
 
   return (
     <>
-    <h1 className="title">Memory-Game</h1>
-    <h2 className="text-center text-xl my-4">
-        Zeit: {Math.floor(time / 60)}:{String(time % 60).padStart(2, "0")} min
-      </h2>
+      <h1 className="title">Memory-Game</h1>
+      <Timer setIsFinished={setIsFinished} setResult={setResult} />
 
-    <div className="flex flex-wrap h-90 justify-center items-center">
-      {cardsComplete.map((card) => (
-        <CardCreater
-          key={card.id}
-          card={card}
-          back={cardBack}
-          setCardsComplete={setCardsComplete}
-          cardsComplete={cardsComplete}
-        />
-      ))}
-    </div>
+      <div className="flex flex-wrap h-90 justify-center items-center">
+        {cardsComplete.map((card) => (
+          <CardCreater
+            key={card.id}
+            card={card}
+            back={cardBack}
+            setCardsComplete={setCardsComplete}
+            cardsComplete={cardsComplete}
+            cardsFlipped={cardsFlipped}
+            setCardsFlipped={setCardsFlipped}
+          />
+        ))}
+      </div>
     </>
   );
 };
