@@ -9,7 +9,6 @@ const CardCreater = ({
   cardsComplete,
   setCardsFlipped,
   cardsFlipped,
-  
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -35,9 +34,11 @@ const CardCreater = ({
   return (
     <div className="card" onClick={flipCard}>
       <div className={`card-inner ${isFlipped ? "card-flipped" : ""}`}>
-        <div className={`card-front ${back}`}></div>
         <div
-          className="card-back"
+          className={`${card.isMatched ? "match" : ""} card-front ${back}`}
+        ></div>
+        <div
+          className={`${card.isMatched ? "match" : ""} card-back`}
           style={{ backgroundImage: `url(${card.image})` }}
         ></div>
       </div>{" "}
