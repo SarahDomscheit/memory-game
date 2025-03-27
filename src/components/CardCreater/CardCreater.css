@@ -38,3 +38,4 @@ background: linear-gradient(90deg, rgba(175,170,255,1) 0%, rgba(144,144,255,1) 4
 .card-inner.card-flipped {
   transform: rotateY(180deg);
 }
+
