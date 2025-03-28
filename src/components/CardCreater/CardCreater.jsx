@@ -30,6 +30,7 @@ const CardCreater = ({
         <div
           className={`${card.isMatched ? "match" : ""} card-front ${back}`}
         ></div>
+        <div className="card-front icon" style={{backgroundImage: `url(./memory_icon_6_200_black.png)` }}></div>
         <div
           className={`${card.isMatched ? "match" : ""} card-back`}
           style={{ backgroundImage: `url(${card.image})` }}
