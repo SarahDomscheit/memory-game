@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Welcome.css";
 
 const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const [url, setUrl] = useState([]);
@@ -57,6 +58,9 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const handleStart = () => {
     setStart(true);
   };
+  const handleChange = (e) => {
+    setAmountCards(e.target.value);
+  };
 
   return (
     <div>
@@ -67,6 +71,18 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
         illum dignissimos porro veritatis placeat voluptas voluptates,
         repellendus explicabo. Mollitia.
       </p>
+      <div className="slidecontainer">
+        <label htmlFor="myRange">Amount of cards : {amountCards * 2}</label>
+        <input
+          type="range"
+          min="5"
+          max="10"
+          value={amountCards}
+          className="slider"
+          id="myRange"
+          onChange={handleChange}
+        />
+      </div>
       <button onClick={handleStart}>Start Game</button>
     </div>
   );
