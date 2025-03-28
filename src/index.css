@@ -2,8 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background: rgb(251,251,255);
-background: linear-gradient(12deg, rgba(251,251,255,1) 0%, rgba(201,246,255,1) 100%);
-position: relative;
+@font-face {
+  font-family: "CCMonsterMashOutline W01 Rg";
+  src: url("https://db.onlinewebfonts.com/t/f828c60f6af08bbda92a14ac38d08ffa.eot");
+  src: url("https://db.onlinewebfonts.com/t/f828c60f6af08bbda92a14ac38d08ffa.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/f828c60f6af08bbda92a14ac38d08ffa.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/f828c60f6af08bbda92a14ac38d08ffa.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/f828c60f6af08bbda92a14ac38d08ffa.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/f828c60f6af08bbda92a14ac38d08ffa.svg#CCMonsterMashOutline W01 Rg")
+      format("svg");
+}
+
+body {
+  background: rgb(251, 251, 255);
+  background: linear-gradient(
+    12deg,
+    rgba(251, 251, 255, 1) 0%,
+    rgba(201, 246, 255, 1) 100%
+  );
+  position: relative;
 }

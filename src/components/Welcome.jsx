@@ -1,19 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import "./Welcome.css";
 
 const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [url, setUrl] = useState([
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/039.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/063.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/092.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/133.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png",
-    "https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png",
-  ]);
+  const [url, setUrl] = useState([]);
+  const [amountCards, setAmountCards] = useState(5);
+  const [start, setStart] = useState(false);
 
   function createDeck(url) {
     const cards = url.map((url, index) => ({
@@ -34,14 +25,41 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
     const shuffledDeck = duplicatedCards.sort(() => Math.random() - 0.5);
     return shuffledDeck;
   }
+  useEffect(() => {
+    async function fetchURL() {
+      try {
+        const response = await fetch(
+          "https://hp-api.onrender.com/api/characters"
+        );
+        const data = await response.json();
+        const newUrls = data.slice(0, amountCards).map((item) => item.image);
+        setUrl(newUrls);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    if (start) {
+      fetchURL();
+    }
+
+    return () => {};
+  }, [start]);
+
+  useEffect(() => {
+    if (url.length > 0) {
+      const deck = createDeck(url);
+      setCardsComplete(deck);
+      //option to set card back
+      setCardBack("blue");
+      setIsStarted(true);
+    }
+  }, [url]);
 
   const handleStart = () => {
-    // fetch later
-    const deck = createDeck(url);
-    setCardsComplete(deck);
-    //option to set card back
-    setCardBack("blue");
-    setIsStarted(true);
+    setStart(true);
+  };
+  const handleChange = (e) => {
+    setAmountCards(e.target.value);
   };
 
   return (
@@ -53,6 +71,18 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
         illum dignissimos porro veritatis placeat voluptas voluptates,
         repellendus explicabo. Mollitia.
       </p>
+      <div className="slidecontainer">
+        <label htmlFor="myRange">Amount of cards : {amountCards * 2}</label>
+        <input
+          type="range"
+          min="5"
+          max="10"
+          value={amountCards}
+          className="slider"
+          id="myRange"
+          onChange={handleChange}
+        />
+      </div>
       <button onClick={handleStart}>Start Game</button>
     </div>
   );

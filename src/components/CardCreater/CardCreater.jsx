@@ -10,13 +10,6 @@ const CardCreater = ({
   setCardsFlipped,
   cardsFlipped,
 }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  useEffect(() => {
-    // Synchronisiere den lokalen Zustand mit dem globalen Zustand
-    setIsFlipped(card.isFlipped);
-  }, [card.isFlipped]);
-
   const flipCard = () => {
     if (!card.isMatched && !card.isFlipped && cardsFlipped.length < 2) {
       const updatedCards = cardsComplete.map((currentCard) => {
@@ -33,7 +26,7 @@ const CardCreater = ({
 
   return (
     <div className="card" onClick={flipCard}>
-      <div className={`card-inner ${isFlipped ? "card-flipped" : ""}`}>
+      <div className={`card-inner ${card.isFlipped ? "card-flipped" : ""}`}>
         <div
           className={`${card.isMatched ? "match" : ""} card-front ${back}`}
         ></div>
