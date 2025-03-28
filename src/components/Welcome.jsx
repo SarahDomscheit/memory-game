@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
 
 const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [url, setUrl] = useState([
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/039.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/063.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/092.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/133.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png",
-    // "https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png",
-  ]);
+  const [url, setUrl] = useState([]);
   const [amountCards, setAmountCards] = useState(5);
+  const [start, setStart] = useState(false);
 
   function createDeck(url) {
     const cards = url.map((url, index) => ({
@@ -47,18 +36,27 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
       } catch (error) {
         console.log(error);
       }
+    }
+    if (start) {
+      fetchURL();
+    }
 
+    return () => {};
+  }, [start]);
+
+  useEffect(() => {
+    if (url.length > 0) {
       const deck = createDeck(url);
       setCardsComplete(deck);
       //option to set card back
       setCardBack("blue");
       setIsStarted(true);
     }
-    async function handleStart() {
-      await fetchURL();
-    }
-    return () => {};
   }, [url]);
+
+  const handleStart = () => {
+    setStart(true);
+  };
 
   return (
     <div>
