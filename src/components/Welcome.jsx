@@ -63,13 +63,14 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   };
 
   return (
-    <div>
-      <h1>Willkommen zum Memory Game</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero error
-        eum fugiat amet mollitia, atque, id enim similique aspernatur dolore
-        illum dignissimos porro veritatis placeat voluptas voluptates,
-        repellendus explicabo. Mollitia.
+    <div className="welcome_container">
+      <h1>Welcome to the <br/> Memory-Game</h1>
+      <div className="welcome_content">
+      <p className="welcome_text">
+      Test your memory skills by finding all the matching card pairs.
+Flip two cards at a time – can you remember where they were?
+Beat the clock and complete the game as fast as you can.
+Good luck and have fun! 
       </p>
       <div className="slidecontainer">
         <label htmlFor="myRange">Amount of cards : {amountCards * 2}</label>
@@ -83,7 +84,20 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
           onChange={handleChange}
         />
       </div>
-      <button onClick={handleStart}>Start Game</button>
+      <button className="start_button" onClick={handleStart}>Start Game</button>
+
+
+{/* <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+Start game
+</span>
+</button> */}
+
+
+
+
+
+    </div>
     </div>
   );
 };

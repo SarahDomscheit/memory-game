@@ -28,8 +28,8 @@ const Timer = ({ setIsFinished, setResult }) => {
   }, [time]);
 
   return (
-    <h2 className="text-center text-xl my-4">
-      Zeit: {Math.floor(time / 60)}:{String(time % 60).padStart(2, "0")} min
+    <h2 className="text-center text-xl my-2">
+      Countdown: {Math.floor(time / 60)}:{String(time % 60).padStart(2, "0")} min
     </h2>
   );
 };

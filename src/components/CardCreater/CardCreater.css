@@ -1,11 +1,7 @@
 .blue {
-  background: rgb(175, 170, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(175, 170, 255, 1) 0%,
-    rgba(144, 144, 255, 1) 48%,
-    rgba(59, 200, 228, 1) 100%
-  );
+  background: rgb(174,238,183);
+  background: radial-gradient(circle, rgba(174,238,183,1) 0%, rgba(49,175,252,1) 76%, rgba(148,187,233,1) 100%);
+  
 }
 
 .card {
@@ -32,8 +28,13 @@
   background-position: center;
   background-size: cover;
   border-radius: 8px;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   border-radius: 8px;
+}
+
+.card-front.icon{
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .card-back {
