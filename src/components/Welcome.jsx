@@ -6,7 +6,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const [url, setUrl] = useState([]);
   const [amountCards, setAmountCards] = useState(5);
   const [start, setStart] = useState(false);
-  const [fetchPicUrl, setFetchPicUrl] = useState(null);
+  const [fetchPicUrl, setFetchPicUrl] = useState("https://hp-api.onrender.com/api/characters");
 
   const options = [
     {
@@ -16,6 +16,10 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
     {
       name: "Cats",
       value: "https://api.thecatapi.com/v1/images/search?limit=10",
+    },
+    {
+      name: "Dogs",
+      value: "https://api.thedogapi.com/v1/images/search?limit=10",
     },
   ];
 
