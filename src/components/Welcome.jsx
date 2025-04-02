@@ -1,27 +1,33 @@
 import { useEffect, useState } from "react";
 import "./Welcome.css";
 import createDeck from "./functions/createDeck";
+import PreviewCard from "./PreviewCard";
 
 const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const [url, setUrl] = useState([]);
   const [amountCards, setAmountCards] = useState(5);
   const [start, setStart] = useState(false);
-  const [fetchPicUrl, setFetchPicUrl] = useState("https://hp-api.onrender.com/api/characters");
+  
 
   const options = [
     {
       name: "Harry Potter",
       value: "https://hp-api.onrender.com/api/characters",
+      logo: "./Logo_hp.png"
     },
     {
       name: "Cats",
       value: "https://api.thecatapi.com/v1/images/search?limit=10",
+      logo: "./Logo_cat.png"
     },
     {
       name: "Dogs",
       value: "https://api.thedogapi.com/v1/images/search?limit=10",
+      logo: "./Logo_dog.png"
     },
   ];
+
+  const [fetchPicUrl, setFetchPicUrl] = useState(options[0].value);
 
   useEffect(() => {
     async function fetchURL() {
@@ -82,17 +88,23 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
             id="myRange"
             onChange={handleChange}
           />
-          <label htmlFor="urlOption"></label>
+<div className="flex flex-row h-90 justify-center items-center">
+        {options.map((option, index) => ( 
+          <PreviewCard key={index} option={option} setFetchPicUrl={setFetchPicUrl}/>
+        ) )}
+</div>
+          {/* <label htmlFor="urlOption"></label>
           <select
             id="urlOption"
             onChange={(e) => setFetchPicUrl(e.target.value)}
           >
+            
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.name}
               </option>
             ))}
-          </select>
+          </select> */}
         </div>
         <button className="start_button" onClick={handleStart}>
           Start Game
