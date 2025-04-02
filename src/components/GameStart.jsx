@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CardCreater from "./CardCreater/CardCreater";
 import "./GameStart.css";
 import Timer from "./Timer";
-import confetti from "canvas-confetti"; // Importiere die Confetti-Bibliothek
 
 const GameStart = ({
   cardsComplete,
@@ -13,25 +12,24 @@ const GameStart = ({
   setResult,
 }) => {
   const [cardsFlipped, setCardsFlipped] = useState([]);
+  const moveCount = useRef(0);
   function checkFlippedCards(cards) {
-    console.log("checkFlippedCards", cards);
+    moveCount.current += 1;
+    console.log("moveCount", moveCount);
+    // console.log("checkFlippedCards", cards);
     if (cards[0].image === cards[1].image) {
       const updatedCards = cardsComplete.map((currentCard) => {
         if (currentCard.id === cards[0].id) {
-          // console.log("if match [0]");
           currentCard.isMatched = !currentCard.isMatched;
         }
         if (currentCard.id === cards[1].id) {
-          // console.log("if match [1]");
           currentCard.isMatched = !currentCard.isMatched;
         }
 
         return currentCard;
       });
       setCardsComplete(updatedCards);
-      
       setCardsFlipped([]);
-      // Karten dürfen nicht mehr gedreht werden
     } else {
       setTimeout(() => {
         const updatedCards = cardsComplete.map((currentCard) => {
@@ -47,15 +45,14 @@ const GameStart = ({
         setCardsFlipped([]);
       }, 1000); // 1 Sekunde Verzögerung
     }
-console.log("cardscomplete", cardsComplete);
-    
+    console.log("cardscomplete", cardsComplete);
   }
   useEffect(() => {
     if (cardsFlipped.length === 2) {
       checkFlippedCards(cardsFlipped);
     }
   }, [cardsFlipped]);
-  
+
   useEffect(() => {
     if (cardsComplete.every((card) => card.isMatched)) {
       setIsFinished(true);
@@ -66,9 +63,13 @@ console.log("cardscomplete", cardsComplete);
   return (
     <>
       <h1 className="title">Memory-Game</h1>
-      <Timer setIsFinished={setIsFinished} setResult={setResult} />
-    
-      <div className="flex flex-wrap gap-1 h-screen justify-center items-center">
+      <Timer
+        setIsFinished={setIsFinished}
+        setResult={setResult}
+        moveCount={moveCount}
+      />
+
+      <div className="flex flex-wrap gap-1 min-h-screen justify-center items-center">
         {cardsComplete.map((card) => (
           <CardCreater
             key={card.id}
@@ -78,7 +79,6 @@ console.log("cardscomplete", cardsComplete);
             cardsComplete={cardsComplete}
             cardsFlipped={cardsFlipped}
             setCardsFlipped={setCardsFlipped}
-            
           />
         ))}
       </div>

@@ -1,29 +1,39 @@
 .finishedBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left:0;
-    background-color: rgba(0, 0, 0, 0.474);
-    height: 100%;
-    width: 100%;
-    backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.474);
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(4px);
 }
 
+.finishCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
+  height: 300px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.426);
+}
 .content {
-    display: flex;
-    flex-direction: row;
-} 
+  display: flex;
+  flex-direction: row;
+}
 
 .button {
-background-color: white;
-color: black;
-padding: 10px, 20px;
-border: none;
-border-radius: 5px;
-font-size: 1.4rem;
-cursor: pointer;
-padding: 5px;
-
+  background: linear-gradient(45deg, #6a0dad, #1e90ff);
+  color: white;
+  padding: 10px, 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 5px;
 }

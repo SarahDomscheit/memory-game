@@ -2,13 +2,12 @@
   height: 97vh;
 }
 
-.welcome_content{
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 0 auto;
-width: 80%;
-
+.welcome_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
 }
 
 h1 {
@@ -18,10 +17,10 @@ h1 {
   line-height: normal;
 }
 
-.welcome_text{
+.welcome_text {
   margin: 2rem 0;
   font-size: 0.9rem;
-
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .start_button {
@@ -31,23 +30,20 @@ h1 {
   padding: 10px 20px;
   font-size: 3rem;
   font-weight: bold;
-  color: #6a0dad; 
-  background: rgba(255, 255, 255, 0.793);
-  border: 0px solid;
+  background: linear-gradient(45deg, #6a0dad, #1e90ff);
+  color: white;
 
+  border: 0px solid;
   border-radius: 8px;
   cursor: pointer;
   overflow: hidden;
   transition: color 0.3s ease;
 }
 
-
-
 .start_button:hover {
-  background: linear-gradient(45deg, #6a0dad, #1e90ff);
-  color: white;
+  color: #6a0dad;
+  background: rgba(255, 255, 255, 0.793);
   border: none;
-
 }
 
 .start_button span {
@@ -55,50 +51,43 @@ h1 {
   z-index: 1;
 }
 
-
-
 .slidecontainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
-  width: 30%; /* Width of the outside container */
+  width: 30%;
 }
 
-/* The slider itself */
 .slider {
   border-radius: 8px;
-  -webkit-appearance: none; /* Override 
-  default CSS styles */
+  -webkit-appearance: none;
   appearance: none;
-  width: 100%; /* Full-width */
-  height: 25px; /* Specified height */
-  background: #ffffff; /* Grey background */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  width: 100%;
+  height: 25px;
+  background: #ffffff;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
   transition: opacity 0.2s;
 }
 
-/* Mouse-over effects */
 .slider:hover {
-  opacity: 1; /* Fully shown on mouse-over */
+  opacity: 1;
 }
 
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
   border-radius: 8px;
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
   appearance: none;
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background:linear-gradient(45deg, #6a0dad, #1e90ff); /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  width: 25px;
+  height: 25px;
+  background: linear-gradient(45deg, #6a0dad, #1e90ff);
+  cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #6a0dad; /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
