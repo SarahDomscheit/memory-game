@@ -3,6 +3,7 @@ import "../components/CardCreater/CardCreater.css"
 import "./PreviewCard.css"
 
 export default function PreviewCard({option, setFetchPicUrl}) {
+    
   return (
     <div className={`card`} onClick={setFetchPicUrl(option.value)}>
     <div className={`card-inner`}>
@@ -14,3 +15,4 @@ export default function PreviewCard({option, setFetchPicUrl}) {
   </div>
   )
 }
+
