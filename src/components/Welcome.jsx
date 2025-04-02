@@ -10,11 +10,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   
 
   const options = [
-    {
-      name: "Harry Potter",
-      value: "https://hp-api.onrender.com/api/characters",
-      logo: "./Logo_hp.png"
-    },
+   
     {
       name: "Cats",
       value: "https://api.thecatapi.com/v1/images/search?limit=10",
@@ -25,6 +21,21 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
       value: "https://api.thedogapi.com/v1/images/search?limit=10",
       logo: "./Logo_dog.png"
     },
+    {
+      name: "Harry Potter",
+      value: "https://hp-api.onrender.com/api/characters",
+      logo: "./Logo_hp.png"
+    },
+    {
+      name: "Dragon Ball",
+      value: "https://dragonball-api.com/api/characters?limit=10",
+      logo: "./Logo_db.png"
+    },
+    {
+      name: "Pokémon",
+      value: "https://pokeapi.co/api/v2/pokemon?limit=10",
+      logo: "./Logo_po.png" 
+    }
   ];
 
   const [fetchPicUrl, setFetchPicUrl] = useState(options[0].value);
@@ -34,19 +45,45 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
       try {
         const response = await fetch(fetchPicUrl);
         const data = await response.json();
-        const newUrls = data
+  
+        let items = data;
+  
+        // Dragon Ball – prüfe auf "items"
+        if (data.items) {
+          items = data.items;
+        }
+  
+        // Pokémon – prüfe auf "results"
+        if (data.results && fetchPicUrl.includes("pokeapi.co")) {
+          const promises = data.results.slice(0, amountCards).map(async (poke) => {
+            const res = await fetch(poke.url);
+            const pokeData = await res.json();
+            
+            return (
+              pokeData.sprites.other["official-artwork"].front_default ||
+              pokeData.sprites.front_default
+            );
+          });
+  
+          const newUrls = await Promise.all(promises);
+          setUrl(newUrls);
+          return; 
+        }
+  
+        // Alle anderen APIs
+        const newUrls = items
           .slice(0, amountCards)
-          .map((item) => (item.image ? item.image : item.url));
+          .map((item) => item.image ? item.image : item.url);
+  
         setUrl(newUrls);
       } catch (error) {
         console.log(error);
       }
     }
+  
     if (start) {
       fetchURL();
     }
-
-    return () => {};
   }, [start]);
 
   useEffect(() => {
