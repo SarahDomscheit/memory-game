@@ -18,7 +18,30 @@
 }
 
 body {
-  background: rgb(255,255,255);
-  background: linear-gradient(4deg, rgba(255,255,255,1) 6%, rgba(253,187,45,1) 100%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    4deg,
+    rgba(255, 255, 255, 1) 6%,
+    rgba(253, 187, 45, 1) 100%
+  );
   position: relative;
+}
+
+/* Timer CSS */
+.timerBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+  margin: 1rem auto;
+  background-color: rgba(255, 255, 255, 0.132);
+  border-radius: 8px;
+  box-shadow: 0 0 8px grey;
+}
+
+.timerBox h2,
+.timerBox p {
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
