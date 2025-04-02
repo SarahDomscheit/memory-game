@@ -1,3 +1,4 @@
+import ConfettiAnimation from "./ConfettiAnimation";
 import "./GameFinish.css"
 const GameFinish = ({result, setIsStarted, setIsFinished}) => {
 
@@ -7,6 +8,7 @@ const GameFinish = ({result, setIsStarted, setIsFinished}) => {
   }
 
   return <div className="finishedBox"><div>{result}</div>;
+  {result==="Gewonnen! 🎉" && <ConfettiAnimation/>}
   <button className="button" onClick={Restart}>
   Zur Übersicht
 </button>

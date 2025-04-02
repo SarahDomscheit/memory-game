@@ -1,23 +1,33 @@
 import { useEffect, useState } from "react";
 import "./Welcome.css";
 import createDeck from "./functions/createDeck";
+import PreviewCard from "./PreviewCard";
 
 const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const [url, setUrl] = useState([]);
   const [amountCards, setAmountCards] = useState(5);
   const [start, setStart] = useState(false);
-  const [fetchPicUrl, setFetchPicUrl] = useState(null);
+  
 
   const options = [
     {
       name: "Harry Potter",
       value: "https://hp-api.onrender.com/api/characters",
+      logo: "./Logo_hp.png"
     },
     {
       name: "Cats",
       value: "https://api.thecatapi.com/v1/images/search?limit=10",
+      logo: "./Logo_cat.png"
+    },
+    {
+      name: "Dogs",
+      value: "https://api.thedogapi.com/v1/images/search?limit=10",
+      logo: "./Logo_dog.png"
     },
   ];
+
+  const [fetchPicUrl, setFetchPicUrl] = useState(options[0].value);
 
   useEffect(() => {
     async function fetchURL() {
@@ -63,9 +73,10 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
       </h1>
       <div className="welcome_content">
         <p className="welcome_text">
-          Test your memory skills by finding all the matching card pairs. Flip
-          two cards at a time – can you remember where they were? Beat the clock
-          and complete the game as fast as you can. Good luck and have fun!
+        Test your memory skills by finding all the matching card pairs!
+Flip two cards at a time – can you remember where they were? Beat the clock and complete the game as fast as you can. Good luck and have fun!
+<br/><br/>
+You can play with one of three themed decks: Harry Potter, Cats, or Dogs – each featuring its own unique card illustrations to challenge your memory!
         </p>
         <div className="slidecontainer">
           <label htmlFor="myRange">Amount of cards : {amountCards * 2}</label>
@@ -78,17 +89,23 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
             id="myRange"
             onChange={handleChange}
           />
-          <label htmlFor="urlOption"></label>
+<div className="flex flex-row h-90 justify-center items-center">
+        {options.map((option, index) => ( 
+          <PreviewCard key={index} option={option} fetchPicUrl={fetchPicUrl} setFetchPicUrl={setFetchPicUrl}/>
+        ) )}
+</div>
+          {/* <label htmlFor="urlOption"></label>
           <select
             id="urlOption"
             onChange={(e) => setFetchPicUrl(e.target.value)}
           >
+            
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.name}
               </option>
             ))}
-          </select>
+          </select> */}
         </div>
         <button className="start_button" onClick={handleStart}>
           Start Game

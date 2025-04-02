@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Timer = ({ setIsFinished, setResult }) => {
-  const [time, setTime] = useState(120);
+  const [time, setTime] = useState(60);
   const [isRunning, setIsRunning] = useState(true);
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CardCreater from "./CardCreater/CardCreater";
 import "./GameStart.css";
 import Timer from "./Timer";
+import confetti from "canvas-confetti"; // Importiere die Confetti-Bibliothek
 
 const GameStart = ({
   cardsComplete,
@@ -66,8 +67,8 @@ console.log("cardscomplete", cardsComplete);
     <>
       <h1 className="title">Memory-Game</h1>
       <Timer setIsFinished={setIsFinished} setResult={setResult} />
-
-      <div className="flex flex-wrap h-90 justify-center items-center">
+    
+      <div className="flex flex-wrap gap-1 h-screen justify-center items-center">
         {cardsComplete.map((card) => (
           <CardCreater
             key={card.id}
