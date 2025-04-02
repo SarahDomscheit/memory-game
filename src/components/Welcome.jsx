@@ -7,23 +7,22 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const [url, setUrl] = useState([]);
   const [amountCards, setAmountCards] = useState(5);
   const [start, setStart] = useState(false);
-  
 
   const options = [
     {
       name: "Harry Potter",
       value: "https://hp-api.onrender.com/api/characters",
-      logo: "./Logo_hp.png"
+      logo: "./Logo_hp.png",
     },
     {
       name: "Cats",
       value: "https://api.thecatapi.com/v1/images/search?limit=10",
-      logo: "./Logo_cat.png"
+      logo: "./Logo_cat.png",
     },
     {
       name: "Dogs",
       value: "https://api.thedogapi.com/v1/images/search?limit=10",
-      logo: "./Logo_dog.png"
+      logo: "./Logo_dog.png",
     },
   ];
 
@@ -73,10 +72,14 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
       </h1>
       <div className="welcome_content">
         <p className="welcome_text">
-        Test your memory skills by finding all the matching card pairs!
-Flip two cards at a time – can you remember where they were? Beat the clock and complete the game as fast as you can. Good luck and have fun!
-<br/><br/>
-You can play with one of three themed decks: Harry Potter, Cats, or Dogs – each featuring its own unique card illustrations to challenge your memory!
+          Test your memory skills by finding all the matching card pairs! Flip
+          two cards at a time – can you remember where they were? Beat the clock
+          and complete the game as fast as you can. Good luck and have fun!
+          <br />
+          <br />
+          You can play with one of three themed decks: Harry Potter, Cats, or
+          Dogs – each featuring its own unique card illustrations to challenge
+          your memory!
         </p>
         <div className="slidecontainer">
           <label htmlFor="myRange">Amount of cards : {amountCards * 2}</label>
@@ -89,33 +92,20 @@ You can play with one of three themed decks: Harry Potter, Cats, or Dogs – eac
             id="myRange"
             onChange={handleChange}
           />
-<div className="flex flex-row h-90 justify-center items-center">
-        {options.map((option, index) => ( 
-          <PreviewCard key={index} option={option} fetchPicUrl={fetchPicUrl} setFetchPicUrl={setFetchPicUrl}/>
-        ) )}
-</div>
-          {/* <label htmlFor="urlOption"></label>
-          <select
-            id="urlOption"
-            onChange={(e) => setFetchPicUrl(e.target.value)}
-          >
-            
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.name}
-              </option>
+          <div className="flex flex-row h-90 justify-center items-center">
+            {options.map((option, index) => (
+              <PreviewCard
+                key={index}
+                option={option}
+                fetchPicUrl={fetchPicUrl}
+                setFetchPicUrl={setFetchPicUrl}
+              />
             ))}
-          </select> */}
+          </div>
         </div>
         <button className="start_button" onClick={handleStart}>
           Start Game
         </button>
-
-        {/* <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
-<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
-Start game
-</span>
-</button> */}
       </div>
     </div>
   );

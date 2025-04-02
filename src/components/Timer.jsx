@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const Timer = ({ setIsFinished, setResult }) => {
-  const [time, setTime] = useState(60);
+const Timer = ({ setIsFinished, setResult, moveCount }) => {
+  const [time, setTime] = useState(120);
   const [isRunning, setIsRunning] = useState(true);
 
   useEffect(() => {
@@ -28,9 +28,15 @@ const Timer = ({ setIsFinished, setResult }) => {
   }, [time]);
 
   return (
-    <h2 className="text-center text-xl my-2">
-      Countdown: {Math.floor(time / 60)}:{String(time % 60).padStart(2, "0")} min
-    </h2>
+    <>
+      <div className="timerBox">
+        <h2>
+          Countdown: {Math.floor(time / 60)}:
+          {String(time % 60).padStart(2, "0")} min
+        </h2>
+        <p>Number of Turns: {moveCount.current}</p>
+      </div>
+    </>
   );
 };
 
