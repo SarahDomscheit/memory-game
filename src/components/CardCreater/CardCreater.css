@@ -8,7 +8,7 @@
   width: 150px;
   height: 200px;
   perspective: 1000px;
-  margin: 8px;
+  margin: 8px;  
 }
 
 .card-inner {
@@ -17,6 +17,8 @@
   position: relative;
   transition: 0.5s;
   transform-style: preserve-3d;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .card-front,
