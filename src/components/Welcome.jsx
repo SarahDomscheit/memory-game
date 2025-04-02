@@ -73,9 +73,10 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
       </h1>
       <div className="welcome_content">
         <p className="welcome_text">
-          Test your memory skills by finding all the matching card pairs. Flip
-          two cards at a time – can you remember where they were? Beat the clock
-          and complete the game as fast as you can. Good luck and have fun!
+        Test your memory skills by finding all the matching card pairs!
+Flip two cards at a time – can you remember where they were? Beat the clock and complete the game as fast as you can. Good luck and have fun!
+<br/><br/>
+You can play with one of three themed decks: Harry Potter, Cats, or Dogs – each featuring its own unique card illustrations to challenge your memory!
         </p>
         <div className="slidecontainer">
           <label htmlFor="myRange">Amount of cards : {amountCards * 2}</label>
@@ -90,7 +91,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
           />
 <div className="flex flex-row h-90 justify-center items-center">
         {options.map((option, index) => ( 
-          <PreviewCard key={index} option={option} setFetchPicUrl={setFetchPicUrl}/>
+          <PreviewCard key={index} option={option} fetchPicUrl={fetchPicUrl} setFetchPicUrl={setFetchPicUrl}/>
         ) )}
 </div>
           {/* <label htmlFor="urlOption"></label>
