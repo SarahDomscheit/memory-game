@@ -32,7 +32,7 @@ const CardCreater = ({
         ></div>
         <div className="card-front icon" style={{backgroundImage: `url(./memory_icon_6_200_black.png)` }}></div>
         <div
-          className={`${card.isMatched ? "match" : ""} card-back`}
+          className={`${card.isMatched ? "match" : ""} card-back ${card.image.includes("dragonball") || card.image.includes("pokemon") ? "special-img" : ""}`}
           style={{ backgroundImage: `url(${card.image})` }}
         ></div>
       </div>{" "}

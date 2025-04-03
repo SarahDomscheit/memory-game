@@ -33,7 +33,10 @@
   /* border: 2px solid black; */
   border-radius: 8px;
 }
-
+.special-img{
+background-size: contain;
+background-repeat: no-repeat;
+}
 .card-front.icon{
   background-size: 100%;
   background-repeat: no-repeat;

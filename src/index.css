@@ -25,6 +25,7 @@
 }
 
 body {
+  min-height: 100vh;
   background: rgb(255, 255, 255);
   background: linear-gradient(
     4deg,
