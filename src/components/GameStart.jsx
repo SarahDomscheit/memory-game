@@ -71,7 +71,7 @@ const GameStart = ({
         timeSet={timeSet}
       />
 
-      <div className="flex flex-wrap gap-1 min-h-screen justify-center items-center">
+      <div className="flex flex-wrap gap-1  justify-center items-center">
         {cardsComplete.map((card) => (
           <CardCreater
             key={card.id}

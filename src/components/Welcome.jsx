@@ -158,7 +158,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
             id="myRange"
             onChange={handleChange}
           />
-          <div className="flex flex-row h-90 justify-center items-center">
+          <div className="flex flex-row flex-wrapjustify-center items-center">
             {options.map((option, index) => (
               <PreviewCard
                 key={index}
