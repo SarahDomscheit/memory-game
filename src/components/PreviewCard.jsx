@@ -13,6 +13,7 @@ export default function PreviewCard({option, fetchPicUrl, setFetchPicUrl}) {
       ></div>
       <div className="card-front icon" style={{backgroundImage: `url(${option.logo})` }}></div>
     </div>
+    <p className='text-xs text-center my-1 '>{option.name}</p>
   </div>
   )
 }

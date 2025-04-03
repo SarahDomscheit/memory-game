@@ -33,6 +33,11 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
       name: "Pokémon",
       value: "https://pokeapi.co/api/v2/pokemon?limit=10",
       logo: "./Logo_po.png" 
+    },
+    {
+      name: "German Museum of the Cat",
+      value: "tumblr",
+      logo: "./Logo_tumblr.png" 
     }
   ];
 
@@ -41,44 +46,61 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   useEffect(() => {
     async function fetchURL() {
       try {
+        if (fetchPicUrl === "tumblr") {
+          const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent("https://deutsches-museum-des-katers.tumblr.com/")}`;
+          const response = await fetch(proxyUrl);
+          const data = await response.json();
+
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(data.contents, "text/html");
+
+          const imgElements = Array.from(doc.querySelectorAll("img"));
+          const imgSrcs = imgElements
+            .map(img => img.src)
+            .filter(src => src && src.startsWith("http"))
+            .slice(0, amountCards);
+
+          setUrl(imgSrcs);
+          return;
+        }
+
+        // Standard-Fetch für APIs
         const response = await fetch(fetchPicUrl);
         const data = await response.json();
-  
+
         let items = data;
-  
         // Dragon Ball – prüfe auf "items"
         if (data.items) {
           items = data.items;
         }
-  
-        // Pokémon – prüfe auf "results"
+
+        // Pokémon-Sonderfall
         if (data.results && fetchPicUrl.includes("pokeapi.co")) {
           const promises = data.results.slice(0, amountCards).map(async (poke) => {
             const res = await fetch(poke.url);
             const pokeData = await res.json();
-            
             return (
               pokeData.sprites.other["official-artwork"].front_default ||
               pokeData.sprites.front_default
             );
           });
-  
+
           const newUrls = await Promise.all(promises);
           setUrl(newUrls);
-          return; 
+          return;
         }
-  
+
         // Alle anderen APIs
         const newUrls = items
           .slice(0, amountCards)
           .map((item) => item.image ? item.image : item.url);
-  
+
         setUrl(newUrls);
       } catch (error) {
-        console.log(error);
+        console.log("Fehler beim Laden:", error);
       }
     }
-  
+
     if (start) {
       fetchURL();
     }
@@ -97,6 +119,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const handleStart = () => {
     setStart(true);
   };
+
   const handleChange = (e) => {
     setAmountCards(e.target.value);
   };
@@ -113,9 +136,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
           and complete the game as fast as you can. Good luck and have fun!
           <br />
           <br />
-          You can play with one of three themed decks: Harry Potter, Cats, or
-          Dogs – each featuring its own unique card illustrations to challenge
-          your memory!
+          You can play with one of six themed decks:Cats, Dogs,  Harry Potter,  Dragon Ball, Pokemon or even some art from <a className="font-bold" href="https://deutsches-museum-des-katers.tumblr.com/">German Museum of the Cat</a>! – each featuring its own unique card illustrations to challenge your memory!
         </p>
         <div className="slidecontainer">
           <label htmlFor="myRange">Amount of cards : {amountCards * 2}</label>
@@ -138,6 +159,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
               />
             ))}
           </div>
+          <p>{options.name}</p>
         </div>
         <button className="start_button" onClick={handleStart}>
           Start Game
