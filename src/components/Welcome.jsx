@@ -3,7 +3,7 @@ import "./Welcome.css";
 import createDeck from "./functions/createDeck";
 import PreviewCard from "./PreviewCard";
 
-const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
+const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   const [url, setUrl] = useState([]);
   const [amountCards, setAmountCards] = useState(5);
   const [start, setStart] = useState(false);
@@ -22,18 +22,18 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
     {
       name: "Harry Potter",
       value: "https://hp-api.onrender.com/api/characters",
-      logo: "./Logo_hp.png"
+      logo: "./Logo_hp.png",
     },
     {
       name: "Dragon Ball",
       value: "https://dragonball-api.com/api/characters?limit=10",
-      logo: "./Logo_db.png"
+      logo: "./Logo_db.png",
     },
     {
       name: "Pokémon",
       value: "https://pokeapi.co/api/v2/pokemon?limit=10",
-      logo: "./Logo_po.png" 
-    }
+      logo: "./Logo_po.png",
+    },
   ];
 
   const [fetchPicUrl, setFetchPicUrl] = useState(options[0].value);
@@ -43,42 +43,44 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
       try {
         const response = await fetch(fetchPicUrl);
         const data = await response.json();
-  
+
         let items = data;
-  
+
         // Dragon Ball – prüfe auf "items"
         if (data.items) {
           items = data.items;
         }
-  
+
         // Pokémon – prüfe auf "results"
         if (data.results && fetchPicUrl.includes("pokeapi.co")) {
-          const promises = data.results.slice(0, amountCards).map(async (poke) => {
-            const res = await fetch(poke.url);
-            const pokeData = await res.json();
-            
-            return (
-              pokeData.sprites.other["official-artwork"].front_default ||
-              pokeData.sprites.front_default
-            );
-          });
-  
+          const promises = data.results
+            .slice(0, amountCards)
+            .map(async (poke) => {
+              const res = await fetch(poke.url);
+              const pokeData = await res.json();
+
+              return (
+                pokeData.sprites.other["official-artwork"].front_default ||
+                pokeData.sprites.front_default
+              );
+            });
+
           const newUrls = await Promise.all(promises);
           setUrl(newUrls);
-          return; 
+          return;
         }
-  
+
         // Alle anderen APIs
         const newUrls = items
           .slice(0, amountCards)
-          .map((item) => item.image ? item.image : item.url);
-  
+          .map((item) => (item.image ? item.image : item.url));
+
         setUrl(newUrls);
       } catch (error) {
         console.log(error);
       }
     }
-  
+
     if (start) {
       fetchURL();
     }
@@ -100,6 +102,10 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
   const handleChange = (e) => {
     setAmountCards(e.target.value);
   };
+
+  useEffect(() => {
+    timeSet.current = amountCards * 24;
+  }, [amountCards]);
 
   return (
     <div className="welcome_container">
