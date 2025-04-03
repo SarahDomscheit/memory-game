@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-const Timer = ({ setIsFinished, setResult, moveCount, timeSet }) => {
+const Timer = ({
+  setIsFinished,
+  setResult,
+  moveCount,
+  timeSet,
+  setIsStarted,
+}) => {
   const [time, setTime] = useState(timeSet.current);
   const [isRunning, setIsRunning] = useState(true);
 
@@ -35,6 +41,14 @@ const Timer = ({ setIsFinished, setResult, moveCount, timeSet }) => {
           <div className="digits">
             0{Math.floor(time / 60)}:{String(time % 60).padStart(2, "0")}{" "}
           </div>
+        </div>
+        <div className="flex flex-row items-center ">
+          <button
+            className="button-restart"
+            onClick={() => setIsStarted(false)}
+          >
+            Zur Übersicht
+          </button>
         </div>
         <div className="flex flex-row items-center ">
           <h2>Turns</h2>
