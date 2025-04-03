@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import GameStart from "./components/GameStart";
@@ -11,7 +11,7 @@ const App = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [result, setResult] = useState("");
   const [cardsComplete, setCardsComplete] = useState([]);
-  // console.log(cardsComplete);
+  const timeSet = useRef(0);
   const [cardBack, setCardBack] = useState(); //option later
 
   return (
@@ -24,12 +24,14 @@ const App = () => {
           setIsFinished={setIsFinished}
           setCardsComplete={setCardsComplete}
           setResult={setResult}
+          timeSet={timeSet}
         />
       ) : (
         <Welcome
           setIsStarted={setIsStarted}
           setCardsComplete={setCardsComplete}
           setCardBack={setCardBack}
+          timeSet={timeSet}
         />
       )}
       {isFinished && (

@@ -10,6 +10,7 @@ const GameStart = ({
   setIsFinished,
   setCardsComplete,
   setResult,
+  timeSet,
 }) => {
   const [cardsFlipped, setCardsFlipped] = useState([]);
   const moveCount = useRef(0);
@@ -67,6 +68,7 @@ const GameStart = ({
         setIsFinished={setIsFinished}
         setResult={setResult}
         moveCount={moveCount}
+        timeSet={timeSet}
       />
 
       <div className="flex flex-wrap gap-1 min-h-screen justify-center items-center">
