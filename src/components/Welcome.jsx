@@ -156,10 +156,11 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack }) => {
                 option={option}
                 fetchPicUrl={fetchPicUrl}
                 setFetchPicUrl={setFetchPicUrl}
+  
               />
             ))}
           </div>
-          <p>{options.name}</p>
+         
         </div>
         <button className="start_button" onClick={handleStart}>
           Start Game
