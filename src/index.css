@@ -83,3 +83,17 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.button-restart {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* background: linear-gradient(45deg, #6a0dad, #1e90ff); */
+  box-shadow: 0 0 3px black;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.button-restart:hover {
+  transform: scale(1.05);
+}
