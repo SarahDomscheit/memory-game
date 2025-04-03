@@ -30,7 +30,7 @@ body {
   background: linear-gradient(
     4deg,
     rgba(255, 255, 255, 1) 6%,
-    rgba(253, 187, 45, 1) 100%
+    rgb(134, 163, 231) 100%
   );
   position: relative;
 }
