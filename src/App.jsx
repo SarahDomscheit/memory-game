@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
-import GameStart from "./components/GameStart";
-import GameFinish from "./components/GameFinish";
-import Welcome from "./components/Welcome";
-import Footer from "./components/Footer";
+import GameStart from "./components/GameStart/GameStart";
+import GameFinish from "./components/GameFinish/GameFinish";
+import Welcome from "./components/Welcome/Welcome";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const [isStarted, setIsStarted] = useState(false);

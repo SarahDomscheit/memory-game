@@ -1,4 +1,4 @@
-import ConfettiAnimation from "./ConfettiAnimation";
+import ConfettiAnimation from "../ConfettiAnimation";
 import "./GameFinish.css";
 const GameFinish = ({ result, setIsStarted, setIsFinished }) => {
   function Restart() {
