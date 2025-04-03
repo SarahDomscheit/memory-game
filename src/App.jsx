@@ -25,6 +25,7 @@ const App = () => {
           setCardsComplete={setCardsComplete}
           setResult={setResult}
           timeSet={timeSet}
+          setIsStarted={setIsStarted}
         />
       ) : (
         <Welcome
