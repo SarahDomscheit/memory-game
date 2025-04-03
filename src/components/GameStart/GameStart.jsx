@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react";
-import CardCreater from "./CardCreater/CardCreater";
-import "./GameStart.css";
-import Timer from "./Timer";
+import CardCreater from "../CardCreater/CardCreater";
+import "../GameStart/GameStart.css";
+import Timer from "../Timer";
 
 const GameStart = ({
   cardsComplete,
@@ -71,7 +71,7 @@ const GameStart = ({
         timeSet={timeSet}
       />
 
-      <div className="flex flex-wrap gap-1  justify-center items-center">
+      <div className="flex flex-wrap gap-1 justify-center items-center">
         {cardsComplete.map((card) => (
           <CardCreater
             key={card.id}

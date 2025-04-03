@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Welcome.css";
-import createDeck from "./functions/createDeck";
-import PreviewCard from "./PreviewCard";
+import createDeck from "../functions/createDeck";
+import PreviewCard from "../PreviewCard/PreviewCard";
 
 const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   const [url, setUrl] = useState([]);
@@ -32,13 +32,13 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
     {
       name: "Pokémon",
       value: "https://pokeapi.co/api/v2/pokemon?limit=10",
-      logo: "./Logo_po.png" 
+      logo: "./Logo_po.png",
     },
     {
       name: "German Museum of the Cat",
       value: "tumblr",
-      logo: "./Logo_tumblr.png" 
-    }
+      logo: "./Logo_tumblr.png",
+    },
   ];
 
   const [fetchPicUrl, setFetchPicUrl] = useState(options[0].value);
@@ -47,7 +47,9 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
     async function fetchURL() {
       try {
         if (fetchPicUrl === "tumblr") {
-          const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent("https://deutsches-museum-des-katers.tumblr.com/")}`;
+          const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(
+            "https://deutsches-museum-des-katers.tumblr.com/"
+          )}`;
           const response = await fetch(proxyUrl);
           const data = await response.json();
 
@@ -56,8 +58,8 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
 
           const imgElements = Array.from(doc.querySelectorAll("img"));
           const imgSrcs = imgElements
-            .map(img => img.src)
-            .filter(src => src && src.startsWith("http"))
+            .map((img) => img.src)
+            .filter((src) => src && src.startsWith("http"))
             .slice(0, amountCards);
 
           setUrl(imgSrcs);
@@ -105,7 +107,6 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
       }
     }
 
-
     if (start) {
       fetchURL();
     }
@@ -130,7 +131,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   };
 
   useEffect(() => {
-    timeSet.current = amountCards * 24;
+    timeSet.current = amountCards * 18;
   }, [amountCards]);
 
   return (
@@ -145,7 +146,16 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
           and complete the game as fast as you can. Good luck and have fun!
           <br />
           <br />
-          You can play with one of six themed decks:Cats, Dogs,  Harry Potter,  Dragon Ball, Pokemon or even some art from <a className="font-bold" href="https://deutsches-museum-des-katers.tumblr.com/">German Museum of the Cat</a>! – each featuring its own unique card illustrations to challenge your memory!
+          You can play with one of six themed decks:Cats, Dogs, Harry Potter,
+          Dragon Ball, Pokemon or even some art from{" "}
+          <a
+            className="font-bold"
+            href="https://deutsches-museum-des-katers.tumblr.com/"
+          >
+            German Museum of the Cat
+          </a>
+          ! – each featuring its own unique card illustrations to challenge your
+          memory!
         </p>
         <div className="slidecontainer">
           <label htmlFor="myRange">Amount of cards : {amountCards * 2}</label>
@@ -158,18 +168,16 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
             id="myRange"
             onChange={handleChange}
           />
-          <div className="flex flex-row flex-wrapjustify-center items-center">
-            {options.map((option, index) => (
-              <PreviewCard
-                key={index}
-                option={option}
-                fetchPicUrl={fetchPicUrl}
-                setFetchPicUrl={setFetchPicUrl}
-  
-              />
-            ))}
-          </div>
-         
+        </div>
+        <div className="flex flex-row flex-wrap justify-center items-start gap-2 my-5">
+          {options.map((option, index) => (
+            <PreviewCard
+              key={index}
+              option={option}
+              fetchPicUrl={fetchPicUrl}
+              setFetchPicUrl={setFetchPicUrl}
+            />
+          ))}
         </div>
         <button className="start_button" onClick={handleStart}>
           Start Game
