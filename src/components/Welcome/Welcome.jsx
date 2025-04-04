@@ -135,7 +135,6 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   useEffect(() => {
     timeSet.current = amountCards * 18;
   }, [amountCards]);
-  console.log(fetchPicUrl);
 
   return (
     <div className="welcome_container">
