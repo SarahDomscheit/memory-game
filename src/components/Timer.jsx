@@ -6,9 +6,10 @@ const Timer = ({
   moveCount,
   timeSet,
   setIsStarted,
+  setIsRunning,
+  isRunning,
 }) => {
   const [time, setTime] = useState(timeSet.current);
-  const [isRunning, setIsRunning] = useState(true);
 
   useEffect(() => {
     let interval = null;

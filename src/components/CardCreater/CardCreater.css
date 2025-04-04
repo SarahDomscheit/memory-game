@@ -1,14 +1,18 @@
 .blue {
-  background: rgb(174,238,183);
-  background: radial-gradient(circle, rgba(174,238,183,1) 0%, rgba(49,175,252,1) 76%, rgba(148,187,233,1) 100%);
-  
+  background: rgb(174, 238, 183);
+  background: radial-gradient(
+    circle,
+    rgba(174, 238, 183, 1) 0%,
+    rgba(49, 175, 252, 1) 76%,
+    rgba(148, 187, 233, 1) 100%
+  );
 }
 
 .card {
   width: 150px;
   height: 200px;
   perspective: 1000px;
-  margin: 8px;  
+  margin: 8px;
 }
 
 .card-inner {
@@ -33,11 +37,11 @@
   /* border: 2px solid black; */
   border-radius: 8px;
 }
-.special-img{
-background-size: contain;
-background-repeat: no-repeat;
+.special-img {
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-.card-front.icon{
+.card-front.icon {
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -54,4 +58,13 @@ background-repeat: no-repeat;
   box-shadow: 0 0 15px rgb(255, 68, 230);
   /* border: 4px solid red;
   border-radius: 8px; */
+}
+
+@media (max-width: 800px) {
+  .card {
+    width: 75px;
+    height: 100px;
+    perspective: 1000px;
+    margin: 8px;
+  }
 }

@@ -15,6 +15,8 @@ const GameStart = ({
 }) => {
   const [cardsFlipped, setCardsFlipped] = useState([]);
   const moveCount = useRef(0);
+  const [isRunning, setIsRunning] = useState(true);
+
   function checkFlippedCards(cards) {
     moveCount.current += 1;
     console.log("moveCount", moveCount);
@@ -57,8 +59,11 @@ const GameStart = ({
 
   useEffect(() => {
     if (cardsComplete.every((card) => card.isMatched)) {
-      setIsFinished(true);
+      setTimeout(() => {
+        setIsFinished(true);
+      }, 4000);
       setResult("Gewonnen! 🎉");
+      setIsRunning(false);
     }
   }, [cardsComplete]);
 
@@ -71,6 +76,8 @@ const GameStart = ({
         moveCount={moveCount}
         timeSet={timeSet}
         setIsStarted={setIsStarted}
+        isRunning={isRunning}
+        setIsRunning={setIsRunning}
       />
 
       <div className="flex flex-wrap gap-1 justify-center items-center">

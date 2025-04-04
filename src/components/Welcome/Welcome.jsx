@@ -7,6 +7,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   const [url, setUrl] = useState([]);
   const [amountCards, setAmountCards] = useState(5);
   const [start, setStart] = useState(false);
+  const offset = Math.floor(Math.random() * 1290);
 
   const options = [
     {
@@ -26,12 +27,12 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
     },
     {
       name: "Dragon Ball",
-      value: "https://dragonball-api.com/api/characters?limit=10",
+      value: `https://dragonball-api.com/api/characters?limit=10`,
       logo: "./Logo_db.png",
     },
     {
       name: "Pokémon",
-      value: "https://pokeapi.co/api/v2/pokemon?limit=10",
+      value: `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset}`,
       logo: "./Logo_po.png",
     },
     {
@@ -67,6 +68,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
         }
 
         // Standard-Fetch für APIs
+
         const response = await fetch(fetchPicUrl);
         const data = await response.json();
 
@@ -133,6 +135,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   useEffect(() => {
     timeSet.current = amountCards * 18;
   }, [amountCards]);
+  console.log(fetchPicUrl);
 
   return (
     <div className="welcome_container">
