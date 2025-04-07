@@ -8,7 +8,7 @@ export default function PreviewCard({ option, fetchPicUrl, setFetchPicUrl }) {
     <div className="flex flex-col justify-center items-center">
       <div
         className={`cardPreview rounded-lg ${
-          fetchPicUrl === option.value
+          fetchPicUrl.slice(0, 20) === option.value.slice(0, 20)
             ? `match transition-transform transform scale-105`
             : ""
         }`}

@@ -10,9 +10,9 @@ const GameFinish = ({ result, setIsStarted, setIsFinished }) => {
     <div className="finishedBox">
       <div className="finishCard">
         <div className="text-white text-2xl">{result}</div>
-        {result === "Gewonnen! 🎉" && <ConfettiAnimation />}
+        {result === "You win! 🎉" && <ConfettiAnimation />}
         <button className="button mt-4 " onClick={Restart}>
-          Zur Übersicht
+          Play again
         </button>
       </div>
     </div>

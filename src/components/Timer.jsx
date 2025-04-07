@@ -6,9 +6,10 @@ const Timer = ({
   moveCount,
   timeSet,
   setIsStarted,
+  setIsRunning,
+  isRunning,
 }) => {
   const [time, setTime] = useState(timeSet.current);
-  const [isRunning, setIsRunning] = useState(true);
 
   useEffect(() => {
     let interval = null;
@@ -29,7 +30,7 @@ const Timer = ({
     if (time <= 0) {
       setIsRunning(false);
       setIsFinished(true);
-      setResult("Verloren! Zeit ist abgelaufen.");
+      setResult("You lose!");
     }
   }, [time]);
 
@@ -47,7 +48,7 @@ const Timer = ({
             className="button-restart"
             onClick={() => setIsStarted(false)}
           >
-            Zur Übersicht
+            Restart
           </button>
         </div>
         <div className="flex flex-row items-center ">
