@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: "digitaldigit";
-  src: url("./digital-7.ttf") format("truetype");
+  src: url("/digital-7.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
