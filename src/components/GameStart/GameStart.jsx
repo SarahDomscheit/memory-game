@@ -61,8 +61,8 @@ const GameStart = ({
     if (cardsComplete.every((card) => card.isMatched)) {
       setTimeout(() => {
         setIsFinished(true);
-      }, 4000);
-      setResult("Gewonnen! 🎉");
+      }, 3000);
+      setResult("You win! 🎉");
       setIsRunning(false);
     }
   }, [cardsComplete]);

@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import "./Welcome.css";
 import createDeck from "../functions/createDeck";
 import PreviewCard from "../PreviewCard/PreviewCard";
+import { Spinner } from "react-spinner-toolkit";
+
+// more spinners https://react-spinner-toolkit.vercel.app/
 
 const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   const [url, setUrl] = useState([]);
   const [amountCards, setAmountCards] = useState(5);
   const [start, setStart] = useState(false);
   const offset = Math.floor(Math.random() * 1290);
+  const [loading, setLoading] = useState(false);
 
   const options = [
     {
@@ -47,6 +51,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   useEffect(() => {
     async function fetchURL() {
       try {
+        setLoading(true);
         if (fetchPicUrl === "tumblr") {
           const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(
             "https://deutsches-museum-des-katers.tumblr.com/"
@@ -64,6 +69,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
             .slice(0, amountCards);
 
           setUrl(imgSrcs);
+          setLoading(false);
           return;
         }
 
@@ -95,6 +101,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
 
           const newUrls = await Promise.all(promises);
           setUrl(newUrls);
+          setLoading(false);
           return;
         }
 
@@ -104,8 +111,10 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
           .map((item) => (item.image ? item.image : item.url));
 
         setUrl(newUrls);
+        setLoading(false);
       } catch (error) {
         console.log("Fehler beim Laden:", error);
+        setLoading(false);
       }
     }
 
@@ -125,7 +134,10 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
   }, [url]);
 
   const handleStart = () => {
-    setStart(true);
+    setLoading(true);
+    setTimeout(() => {
+      setStart(true);
+    }, 4000);
   };
 
   const handleChange = (e) => {
@@ -184,6 +196,21 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
         <button className="start_button" onClick={handleStart}>
           Start Game
         </button>
+        {loading && (
+          <>
+            <Spinner
+              className="my-5"
+              color="#8DA8E9"
+              shape="fading"
+              loading
+              speed={1}
+              size={50}
+              transition={true}
+            />
+
+            <p className="loading">loading...</p>
+          </>
+        )}
       </div>
     </div>
   );
