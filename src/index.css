@@ -97,3 +97,7 @@ body {
 .button-restart:hover {
   transform: scale(1.05);
 }
+
+.loading {
+  font-family: "Doto", sans-serif;
+}
