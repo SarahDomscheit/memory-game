@@ -137,7 +137,7 @@ const Welcome = ({ setIsStarted, setCardsComplete, setCardBack, timeSet }) => {
     setLoading(true);
     setTimeout(() => {
       setStart(true);
-    }, 4000);
+    }, 1000);
   };
 
   const handleChange = (e) => {
